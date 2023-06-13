@@ -1,0 +1,6 @@
+[group_test]
+test ansible_host=debian
+
+[group_test:vars]
+ansible_user=ansible
+ansible_port=22

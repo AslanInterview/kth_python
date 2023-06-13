@@ -1,0 +1,19 @@
+---
+# tasks file for test_role
+- name: Install utils
+  package:
+    name: gcc
+    state: latest
+
+  become: yes
+
+- name: move hello_world.c to /tmp
+  copy:
+    src: /home/researcher/sample_prog/main.c
+    dest: /tmp/main.c
+
+- name: compile and run simple hello world
+  shell:
+    cmd: |
+      gcc /tmp/main.c -o /tmp/hello_world
+      /tmp/hello_world
