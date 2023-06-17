@@ -1,0 +1,8 @@
+---
+- name: Invoke role
+  hosts: all
+  become: yes
+
+
+  roles:
+    - roles/test_role

@@ -1,0 +1,28 @@
+---
+- name: Install docker
+  gather_facts: No
+  hosts: all
+  vars:
+    user_name: ansible
+  tasks:
+    - name: Install utils
+      package:
+        name: "{{ item }}"
+        state: latest
+
+      become: yes
+      with_items:
+        - gcc
+
+    - name: move hello_world.c to /tmp
+      copy:
+        src: /home/researcher/sample_prog/main.c
+        dest: /tmp/main.c
+
+    - name: compile and run simple hello world
+      shell:
+        cmd: |
+          gcc /tmp/main.c -o /tmp/hello_world
+          /tmp/hello_world
+
+...
