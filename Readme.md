@@ -54,4 +54,4 @@ After all the steps done, we can run the tests with the following:
 
 And to run cli app, run the following.
 
-    python3 main.py docker
+    python3 main.py debian
