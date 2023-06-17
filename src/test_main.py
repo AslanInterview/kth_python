@@ -7,8 +7,8 @@ import paramiko
 from main import Task_Runner
 
 HOSTNAME = "debian"
-USERNAME = "ansible"
-PASSWORD = None
+USERNAME = "root"
+PASSWORD = "Docker!"
 
 TMP_PLAYBOOK = "temp_playbook.tmp"
 
@@ -48,7 +48,7 @@ class TestMain(unittest.TestCase):
         '''Creates a temporary file and copies it to remote machine via ansible'''
         with open(TMP_FILE, "w") as f:  f.write("sample text")
         self.__make_tmp_playbook(PLAYBOOK_COPY_TO_REMOTE)
-        Task_Runner(playbooks=[TMP_PLAYBOOK], instances=["debian"], remote_user="ansible", become=False).run_tasks()
+        Task_Runner(playbooks=[TMP_PLAYBOOK], instances=["debian"], remote_user=USERNAME, remote_pass=PASSWORD, become=False).run_tasks()
         tmp_folder_contents = self.ftp.listdir("/tmp")
         self.assertTrue(TMP_FILE in tmp_folder_contents)
 

@@ -6,17 +6,17 @@
     user_name: ansible
   tasks:
     - name: Install utils
-      package:
+      ansible.builtin.apt:
         name: "{{ item }}"
         state: latest
 
-      become: yes
       with_items:
+        # - yum-utils
         - gcc
 
     - name: move hello_world.c to /tmp
       copy:
-        src: /home/researcher/sample_prog/main.c
+        src: /root/demo/main.c
         dest: /tmp/main.c
 
     - name: compile and run simple hello world

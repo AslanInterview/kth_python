@@ -92,4 +92,4 @@ if __name__ == '__main__':
 
     instances = sys.argv[1::]
     # running the playbook.yml on all the hosts supplied via command line
-    Task_Runner(playbooks=["role_playbook.yml"], instances=instances, remote_user="ansible").run_tasks()
+    Task_Runner(playbooks=["playbook.yml"], instances=instances, remote_user="root", remote_pass="Docker!").run_tasks()

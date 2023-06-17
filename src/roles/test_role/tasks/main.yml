@@ -9,7 +9,7 @@
 
 - name: move hello_world.c to /tmp
   copy:
-    src: /home/researcher/sample_prog/main.c
+    src: /root/demo/main.c
     dest: /tmp/main.c
 
 - name: compile and run simple hello world
