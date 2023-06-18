@@ -1,6 +1,5 @@
 __all__ = 'Task_runner'
 
-import atexit
 import os
 from typing import List
 import itertools
@@ -45,7 +44,7 @@ class Task_Runner:
         if not isinstance(instances, list) and not isinstance(inventories, list):
             raise ValueError("instances or/and inventories must be specified and be list/lists")
 
-        if isinstance(instances, list) and inventories == None and isinstance(inventories, list):
+        if isinstance(instances, list) and inventories != None and not isinstance(inventories, list):
             raise ValueError("inventories must be list")
         elif isinstance(inventories, list) and instances != None and not isinstance(instances, list):
             raise ValueError("instances must be list")
@@ -57,7 +56,6 @@ class Task_Runner:
             with open(TMP_HOSTS, "w") as f:
                 for instance in instances:
                     f.write(f"{instance}\n")
-            atexit.register(lambda: os.remove(TMP_HOSTS))
             sources = [TMP_HOSTS]
 
         if inventories != None and len(inventories):
@@ -81,6 +79,9 @@ class Task_Runner:
         """Runs the playbook and return 0 if successful"""
         return self.__pbex.run()
 
+    def __del__(self):
+        try:    os.remove(TMP_HOSTS)
+        except: ...
 
 if __name__ == '__main__':
     import sys
