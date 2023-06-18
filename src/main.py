@@ -30,7 +30,6 @@ class Task_Runner:
         remote_user: username, used for connecting to the remote hosts
         remote_pass: password for remote_user. Use None if it doesn't have one
         connection: specifies the type of connection used for contatcing with the remote host
-        private_key_file: private key, used for connections
         become: whether we should escalate our privileges or not
 
     """
@@ -46,7 +45,7 @@ class Task_Runner:
         if not isinstance(instances, list) and not isinstance(inventories, list):
             raise ValueError("instances or/and inventories must be specified and be list/lists")
 
-        if isinstance(instances, list) and not inventories != None and isinstance(inventories, list):
+        if isinstance(instances, list) and inventories == None and isinstance(inventories, list):
             raise ValueError("inventories must be list")
         elif isinstance(inventories, list) and instances != None and not isinstance(instances, list):
             raise ValueError("instances must be list")
