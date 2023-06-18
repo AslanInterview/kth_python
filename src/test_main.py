@@ -60,8 +60,8 @@ class TestMain(unittest.TestCase):
             Task_Runner(playbooks="playbook.yml", instances=None)
         with self.assertRaises(ValueError):
             Task_Runner(playbooks="playbook.yml", instances=["debian"], inventories="hosts")
-
-        Task_Runner(playbooks="playbook.yml", instances=["debian"], inventories="hosts")
+        # Now creating a class normally
+        Task_Runner(playbooks=["playbook.yml"], instances=["debian"], inventories=["hosts"])
 
 
     def __exit__(self, exc_type, exc_value, exc_traceback):

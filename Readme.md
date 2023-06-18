@@ -30,7 +30,7 @@ Ansible **server**:
 ## Boot
 Launch the **server** with the following command
 
-    docker run --network testNetwork --name ansible_server -t -i kth_ansible_server /bin/sh
+    docker run --network testNetwork -t -i kth_ansible_server /bin/sh
 
 and in the separate terminal/tab run the following to start the **client**.
 
